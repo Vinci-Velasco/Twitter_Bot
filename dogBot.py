@@ -21,7 +21,8 @@ os.chdir("./images")
 while True:
     # Download dog photo
     # r is an api request
-    r = requests.get("https://dog.ceo/api/breed/retriever-golden/images/random")
+    r = requests.get
+    ("https://dog.ceo/api/breed/retriever-golden/images/random")
     r.raise_for_status()
     dog_photo = r.json()["message"]
     dog_res = requests.get(dog_photo)  # request to image spefically
