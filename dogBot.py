@@ -3,6 +3,8 @@ import os
 import time
 import requests
 import tweepy
+from multiprocessing import Process 
+print(os.getcwd)
 
 # Credentials
 consumer_key = config.consumer_key
@@ -17,8 +19,8 @@ api = tweepy.API(auth)
 
 os.chdir("./images")
 
-# Bot Loop
-while True:
+
+def save_image():
     # Download dog photo
     # r is an api request
     r = requests.get
@@ -27,14 +29,17 @@ while True:
     dog_photo = r.json()["message"]
     dog_res = requests.get(dog_photo)  # request to image spefically
     dog_res.raise_for_status()
-
-    # Save dog photo to images folder
     dogImage = open("Dog_Photo.jpg", "wb")
     for chunk in dog_res.iter_content(100000):
         dogImage.write(chunk)
     dogImage.close()
 
-    # Tweet photo
-    api.update_with_media("Dog_Photo.jpg")  
-    # Tweet after every X time interval
-    time.sleep(3600)
+def tweet_loop():
+    while True:
+        save_image()
+        api.update_with_media("Dog_Photo.jpg")
+        # Tweet after every hour
+        time.sleep(3600)
+
+if __name__ == '__main__':
+    Process(target=tweet_loop).start()  """
