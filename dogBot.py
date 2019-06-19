@@ -53,6 +53,3 @@ def reply_loop():
 if __name__ == '__main__':
     Process(target=tweet_loop).start()
     Process(target=reply_loop).start()
-
-if __name__ == '__main__':
-    Process(target=tweet_loop).start()  
