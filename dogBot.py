@@ -5,6 +5,10 @@ import time
 import requests
 import tweepy
 from multiprocessing import Process 
+<<<<<<< HEAD
+=======
+print(os.getcwd)
+>>>>>>> f9507e30460d26364e433c06d45460fc98a7a8e2
 
 # Credentials
 consumer_key = config.consumer_key
@@ -17,6 +21,12 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_token)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
+<<<<<<< HEAD
+=======
+os.chdir("./images")
+
+
+>>>>>>> f9507e30460d26364e433c06d45460fc98a7a8e2
 def save_image():
     # Download dog photo
     # r is an api request
@@ -37,6 +47,7 @@ def tweet_loop():
         # Tweet after every hour
         time.sleep(3600)
 
+<<<<<<< HEAD
 def reply_loop():
     while True:
         tweets = tweepy.Cursor(api.search, q="I want a dog", result_type="recent", lang="en").items(3)
@@ -49,3 +60,7 @@ def reply_loop():
 if __name__ == '__main__':
     Process(target=tweet_loop).start()
     Process(target=reply_loop).start()
+=======
+if __name__ == '__main__':
+    Process(target=tweet_loop).start()  """
+>>>>>>> f9507e30460d26364e433c06d45460fc98a7a8e2
